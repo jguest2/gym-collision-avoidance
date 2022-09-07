@@ -25,6 +25,7 @@ from gym_collision_avoidance.envs.policies.ExternalPolicy import ExternalPolicy
 from gym_collision_avoidance.envs.policies.LearningPolicy import LearningPolicy
 from gym_collision_avoidance.envs.policies.CARRLPolicy import CARRLPolicy
 from gym_collision_avoidance.envs.policies.LearningPolicyGA3C import LearningPolicyGA3C
+from gym_collision_avoidance.envs.policies.custom import TestPolicy
 
 # Dynamics
 from gym_collision_avoidance.envs.dynamics.UnicycleDynamics import UnicycleDynamics
@@ -54,6 +55,7 @@ policy_dict = {
     'learning_ga3c': LearningPolicyGA3C,
     'static': StaticPolicy,
     'CADRL': CADRLPolicy,
+    'test': TestPolicy
 }
 
 sensor_dict = {

@@ -302,3 +302,15 @@ class CollectRegressionDataset(EvaluateConfig):
 
         # # Laserscan mode
         # self.TEST_CASE_ARGS['agents_sensors'] = ['laserscan', 'other_agents_states']
+class Train(Config):
+#training config change
+    def __init__(self):
+        self.STATES_IN_OBS = ['is_learning', 'num_other_agents', 'dist_to_goal', 'heading_ego_frame',
+                              'pref_speed', 'radius', 'other_agents_states_encoded']
+        self.MAX_NUM_AGENTS_IN_ENVIRONMENT = 2
+        self.MAX_NUM_AGENTS_TO_SIM = 2
+        Config.__init__(self)
+        self.TRAIN_SINGLE_AGENT = True
+        self.TEST_CASE_ARGS['num_agents'] = 2
+        self.TEST_CASE_ARGS['policy_to_ensure'] = 'test'
+        self.TEST_CASE_ARGS['policies'] = ['test', 'RVO']
