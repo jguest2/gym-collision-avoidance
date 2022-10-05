@@ -81,10 +81,10 @@ class NoisyOtherAgentsStatesSensor(Sensor):
             # project other elements onto the new reference frame
             rel_pos_to_other_global_frame = other_agent.pos_global_frame - \
                 host_agent.pos_global_frame
+            rel_pos_to_other_global_frame += np.random.normal(0, 1) # adding x and y distance noise
             p_parallel_ego_frame = np.dot(rel_pos_to_other_global_frame, host_agent.ref_prll)
             p_orthog_ego_frame = np.dot(rel_pos_to_other_global_frame, host_agent.ref_orth)
             dist_between_agent_centers = vec2_l2_norm(rel_pos_to_other_global_frame)
-            dist_between_agent_centers+= np.random.normal(0,1)
             dist_2_other = dist_between_agent_centers - host_agent.radius - other_agent.radius
             combined_radius = host_agent.radius + other_agent.radius
 
