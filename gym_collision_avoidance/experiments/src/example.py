@@ -25,7 +25,7 @@ def main():
         os.path.dirname(os.path.realpath(__file__)) + '/../../experiments/results/example/')
 
     # Set agent configuration (start/goal pos, radius, size, policy)
-    agents = tc.get_testcase_two_agents()
+    agents = tc.get_noisy_testcase_two_agents()
     [agent.policy.initialize_network() for agent in agents if hasattr(agent.policy, 'initialize_network')]
     env.set_agents(agents)
 

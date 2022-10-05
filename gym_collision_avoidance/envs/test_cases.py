@@ -18,7 +18,7 @@ from gym_collision_avoidance.envs.agent import Agent
 from gym_collision_avoidance.envs.policies.StaticPolicy import StaticPolicy
 from gym_collision_avoidance.envs.policies.NonCooperativePolicy import NonCooperativePolicy
 # from gym_collision_avoidance.envs.policies.DRLLongPolicy import DRLLongPolicy
-from gym_collision_avoidance.envs.policies.RVOPolicy import RVOPolicy
+# from gym_collision_avoidance.envs.policies.RVOPolicy import RVOPolicy
 from gym_collision_avoidance.envs.policies.CADRLPolicy import CADRLPolicy
 from gym_collision_avoidance.envs.policies.GA3CCADRLPolicy import GA3CCADRLPolicy
 from gym_collision_avoidance.envs.policies.ExternalPolicy import ExternalPolicy
@@ -36,6 +36,7 @@ from gym_collision_avoidance.envs.dynamics.ExternalDynamics import ExternalDynam
 from gym_collision_avoidance.envs.sensors.OccupancyGridSensor import OccupancyGridSensor
 from gym_collision_avoidance.envs.sensors.LaserScanSensor import LaserScanSensor
 from gym_collision_avoidance.envs.sensors.OtherAgentsStatesSensor import OtherAgentsStatesSensor
+from gym_collision_avoidance.envs.sensors.NoisyOtherAgentsStatesSensor import NoisyOtherAgentsStatesSensor
 from gym_collision_avoidance.envs import Config
 
 import os
@@ -46,7 +47,7 @@ from gym_collision_avoidance.envs.policies.CADRL.scripts.multi import gen_rand_t
 test_case_filename = "{dir}/test_cases/{pref_speed_string}{num_agents}_agents_{num_test_cases}_cases.p"
 
 policy_dict = {
-    'RVO': RVOPolicy,
+    #'RVO': RVOPolicy,
     'noncoop': NonCooperativePolicy,
     'carrl': CARRLPolicy,
     'external': ExternalPolicy,
@@ -59,6 +60,7 @@ policy_dict = {
 }
 
 sensor_dict = {
+    'noisy_other_agents_states': NoisyOtherAgentsStatesSensor,
     'other_agents_states': OtherAgentsStatesSensor,
     'laserscan': LaserScanSensor,
     # 'other_agents_states_encoded': OtherAgentsStatesSensorEncode,
@@ -82,6 +84,14 @@ def get_testcase_two_agents(policies=['learning', 'GA3C_CADRL']):
     agents = [
         Agent(-goal_x, -goal_y, goal_x, goal_y, 0.5, 1.0, 0.0, policy_dict[policies[0]], UnicycleDynamics, [OtherAgentsStatesSensor], 0),
         Agent(goal_x, goal_y, -goal_x, -goal_y, 0.5, 1.0, np.pi, policy_dict[policies[1]], UnicycleDynamics, [OtherAgentsStatesSensor], 1)
+        ]
+    return agents
+def get_noisy_testcase_two_agents(policies=['learning', 'GA3C_CADRL']):
+    goal_x = 3
+    goal_y = 3
+    agents = [
+        Agent(-goal_x, -goal_y, goal_x, goal_y, 0.5, 1.0, 0.0, policy_dict[policies[0]], UnicycleDynamics, [NoisyOtherAgentsStatesSensor], 0),
+        Agent(goal_x, goal_y, -goal_x, -goal_y, 0.5, 1.0, np.pi, policy_dict[policies[1]], UnicycleDynamics, [NoisyOtherAgentsStatesSensor], 1)
         ]
     return agents
 
