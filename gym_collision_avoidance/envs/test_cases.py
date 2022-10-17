@@ -90,7 +90,7 @@ def get_noisy_testcase_two_agents(policies=['learning', 'GA3C_CADRL']):
     goal_x = 3
     goal_y = 3
     agents = [
-        Agent(-goal_x, -goal_y, goal_x, goal_y, 0.5, 1.0, 0.0, policy_dict[policies[0]], UnicycleDynamics, [NoisyOtherAgentsStatesSensor], 0),
+        Agent(-goal_x, -goal_y, goal_x, goal_y, 0.5, 1.0, 0.0, policy_dict[policies[1]], UnicycleDynamics, [NoisyOtherAgentsStatesSensor], 0),
         Agent(goal_x, goal_y, -goal_x, -goal_y, 0.5, 1.0, np.pi, policy_dict[policies[1]], UnicycleDynamics, [NoisyOtherAgentsStatesSensor], 1)
         ]
     return agents

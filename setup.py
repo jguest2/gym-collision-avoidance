@@ -17,7 +17,8 @@ install_requires = [
         'moviepy',
         'pandas',
         'scipy',
-        'requests'
+        'requests',
+        'importlib-metadata==4.13.0'
         # 'opencv-python<=4.2.0.32', # solely for stable_baselines (needs to be this version or lower for python2.7)
         # 'stable_baselines<2.4.1', # needs to be this version or lower for python2.7 (setup.py uses subprocess in a python3 way)
     ]
@@ -40,4 +41,5 @@ setup(
     install_requires=install_requires,
     packages=find_packages(),
     include_package_data=True,
+
 )
