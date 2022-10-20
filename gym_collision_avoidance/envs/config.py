@@ -147,6 +147,16 @@ class Config(object):
                 'std': np.tile(np.array([5.0, 5.0, 1.0, 1.0, 1.0, 5.0, 1.0], dtype=np.float32), (self.MAX_NUM_OTHER_AGENTS_OBSERVED, 1)),
                 'mean': np.tile(np.array([0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 1.0], dtype=np.float32), (self.MAX_NUM_OTHER_AGENTS_OBSERVED, 1)),
                 },
+            'noisy_other_agents_states': {
+                'dtype': np.float32,
+                'size': (self.MAX_NUM_OTHER_AGENTS_OBSERVED, 7),
+                'bounds': [-np.inf, np.inf],
+                'attr': 'get_sensor_data("other_agents_states")',
+                'std': np.tile(np.array([5.0, 5.0, 1.0, 1.0, 1.0, 5.0, 1.0], dtype=np.float32),
+                               (self.MAX_NUM_OTHER_AGENTS_OBSERVED, 1)),
+                'mean': np.tile(np.array([0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 1.0], dtype=np.float32),
+                                (self.MAX_NUM_OTHER_AGENTS_OBSERVED, 1)),
+            },
             'laserscan': {
                 'dtype': np.float32,
                 'size': (self.LASERSCAN_NUM_PAST, self.LASERSCAN_LENGTH),
